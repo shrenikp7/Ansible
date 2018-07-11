@@ -1,0 +1,54 @@
+---
+- hosts: [dbservers]
+  become: yes
+  remote_user: <AD_ID>
+  become_user: root
+  tasks:
+    - name: install MySQL Commercial common
+      yum:
+        name: /tmp/mysql-commercial-common-8.0.11-1.1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Commercial libs
+      yum:
+        name: /tmp/mysql-commercial-libs-8.0.11-1.1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Commercial libs compact
+      yum:
+        name: /tmp/mysql-commercial-libs-compat-8.0.11-1.1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Commercial CLIENT
+      yum:
+        name: /tmp/mysql-commercial-client-8.0.11-1.1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Commercial embeded compact
+      yum:
+        name: /tmp/mysql-commercial-embedded-compat-8.0.11-1.1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Commercial Devel
+      yum:
+        name: /tmp/mysql-commercial-devel-8.0.11-1.1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Commercial SERVER
+      yum:
+        name: /tmp/mysql-commercial-server-8.0.11-1.1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Commercial TEST
+      yum:
+        name: /tmp/mysql-commercial-test-8.0.11-1.1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Commercial Backup
+      yum:
+        name: /tmp/mysql-commercial-backup-8.0.11-1.1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Commercial Python connector
+      yum:
+        name: /tmp/mysql-connector-python-8.0.11-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Commercial Python connector Cext
+      yum:
+        name: /tmp/mysql-connector-python-cext-8.0.11-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL utilities 
+      yum:
+        name: /tmp/mysql-utilities-1.6.5-1.el7.noarch.rpm
+        state: present
