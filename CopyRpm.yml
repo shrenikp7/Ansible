@@ -1,0 +1,12 @@
+---
+- hosts: [dbservers]
+  become: yes
+  remote_user: AD_ID
+  become_user: root
+  tasks:
+   - name: copy rpm files from control server to target server /tmp directory
+     copy:
+      src: "{{ item }}"
+      dest: /tmp/
+     with_fileglob:
+      - /home/AD_ID/software/mysql8ee/*.rpm
