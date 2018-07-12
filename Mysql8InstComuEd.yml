@@ -1,0 +1,42 @@
+---
+- hosts: [dbservers]
+  become: yes
+  remote_user: <AD_ID>
+  become_user: root
+  tasks:
+    - name: install MySQL Community common
+      yum:
+        name: /tmp/mysql-community-common-8.0.11-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community libs
+      yum:
+        name: /tmp/mysql-community-libs-8.0.11-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community libs compact
+      yum:
+        name: /tmp/mysql-community-libs-compat-8.0.11-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community DebugInfo
+      yum:
+        name: /tmp/mysql-community-minimal-debuginfo-8.0.11-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community CLIENT
+      yum:
+        name: /tmp/mysql-community-client-8.0.11-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community embeded compact
+      yum:
+        name: /tmp/mysql-community-embedded-compat-8.0.11-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community Devel
+      yum:
+        name: /tmp/mysql-community-devel-8.0.11-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community SERVER
+      yum:
+        name: /tmp/mysql-community-server-8.0.11-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL utilities
+      yum:
+        name: /tmp/mysql-utilities-1.6.5-1.el7.noarch.rpm
+        state: present
