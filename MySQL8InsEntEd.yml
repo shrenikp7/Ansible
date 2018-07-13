@@ -1,3 +1,4 @@
+# Make sure to add target server using ssh-copy-id <AD_ID>@<Target_Server>
 ---
 - hosts: [dbservers]
   become: yes
