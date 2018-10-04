@@ -13,5 +13,11 @@
       - /home/AD_ID/software/mysql8ee/*.rpm
 
 
-Note: Execute ansible-playbook as follows, if you are at directory /home/AD_ID/software/mysql8ee/
+Note: 
+
+Make sure to have ssh-id copied to target, if not use following command to copy ssh-id at target/
+
+$ssh-copy-id <AD ID>@<target_IP_address>
+
+Execute ansible-playbook as follows, if you are at directory /home/AD_ID/software/mysql8ee/
 $ansible-playbook CopyRpm.yml *.rpm 
