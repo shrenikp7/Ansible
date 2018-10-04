@@ -11,3 +11,7 @@
       dest: /tmp/
      with_fileglob:
       - /home/AD_ID/software/mysql8ee/*.rpm
+
+
+Note: Execute ansible-playbook as follows, if you are at directory /home/AD_ID/software/mysql8ee/
+$ansible-playbook CopyRpm.yml *.rpm 
