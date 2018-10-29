@@ -1,0 +1,62 @@
+---
+- hosts: [dbservers]
+  become: yes
+  remote_user: 7312060
+  become_user: root
+  tasks:
+    - name: install rpm from a local file
+      yum:
+        name: /tmp/mysql-commercial-common-8.0.13-1.1.el7.x86_64.rpm
+        state: present
+    - name: install rpm from a local file
+      yum:
+        name: /tmp/mysql-commercial-libs-8.0.13-1.1.el7.x86_64.rpm
+        state: present
+    - name: install rpm from a local file
+      yum:
+        name: /tmp/mysql-commercial-libs-compat-8.0.13-1.1.el7.x86_64.rpm
+        state: present
+    - name: install rpm from a local file
+      yum:
+        name: /tmp/mysql-commercial-client-8.0.13-1.1.el7.x86_64.rpm
+        state: present
+    - name: install rpm from a local file
+      yum:
+        name: /tmp/mysql-commercial-embedded-compat-8.0.13-1.1.el7.x86_64.rpm
+        state: present
+    - name: install rpm from a local file
+      yum:
+        name: /tmp/mysql-commercial-devel-8.0.13-1.1.el7.x86_64.rpm
+        state: present
+    - name: install rpm from a local file
+      yum:
+        name: /tmp/mysql-commercial-server-8.0.13-1.1.el7.x86_64.rpm
+        state: present
+    - name: install rpm from a local file
+      yum:
+        name: /tmp/mysql-commercial-test-8.0.13-1.1.el7.x86_64.rpm
+        state: present
+    - name: install rpm from a local file
+      yum:
+        name: /tmp/mysql-commercial-backup-8.0.13-1.1.el7.x86_64.rpm
+        state: present
+    - name: install rpm from a local file
+      yum:
+        name: /tmp/mysql-utilities-1.6.5-1.el7.noarch.rpm
+        state: present
+    - name: install rpm from a local file
+      yum:
+        name: /tmp/mysql-connector-python-8.0.13-1.el7.x86_64.rpm
+        state: present
+    - name: install rpm from a local file
+      yum:
+        name: /tmp/mysql-connector-python-cext-8.0.13-1.el7.x86_64.rpm
+        state: present
+    - name: install rpm from a local file
+      yum:
+        name: /tmp/mysql-shell-8.0.13-1.el7.x86_64.rpm
+        state: present
+    - name: install rpm from a local file
+      yum:
+        name: /tmp/mysql-shell-debuginfo-8.0.13-1.el7.x86_64.rpm
+        state: present
