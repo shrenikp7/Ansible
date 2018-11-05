@@ -22,9 +22,13 @@ $ssh-copy-id <AD ID>@<target_IP_address>
 Execute ansible-playbook as follows, if you are at directory /home/AD_ID/software/mysql8ee/
 $ansible-playbook CopyRpm.yml *.rpm 
 
-If ssh key is not generated on Target Server Or Target Server is re-configured then execute folloiwng steps
+If ssh key is not generated on Target Server Or Target Server is re-configured then execute following steps
 
-01. Generate ssh key on Target Server using following command ssh-keygen
-02. Copy key from /home/<AD_ID>/.ssh/.id_rsa.pub
+01. Generate ssh key on Target Server using command ssh-keygen
+02. Copy key from Target Server /home/<AD_ID>/.ssh/.id_rsa.pub
 03. Paste key from step 2 to Ansible Server /home/<AD_Name>/.ssh/known_hosts
 04. From Ansible Server execute $ssh-copy-id <AD ID>@<target_IP_address>
+
+If Server is re-configured or OS is -re-installed then follow following step and above steps
+
+01. From Ansible Server /home/<AD_Name>/.ssh/known_hosts remove the key for the Target Server reconfigured.
