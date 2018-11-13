@@ -1,0 +1,20 @@
+---
+- hosts: [dbservers]
+  become: yes
+  remote_user: <AD ID>
+  become_user: root
+  tasks:
+   - name: Create directory if they don't exist
+     file:
+       path: "{{ item }}"
+       state: directory
+       owner: mysql
+       group: mysql
+       mode: 0775
+     with_items:
+       - /mysql/<DB_NAME>/data
+       - /mysql/<DB_NAME>/logs
+       - /mysql/<DB_NAME>/binlogs
+       - /mysql/<DB_NAME>/iblogs
+       - /mysql/<DB_NAME>/temp
+       - /mysql/MEM8.0.3/agent
