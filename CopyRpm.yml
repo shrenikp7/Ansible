@@ -32,3 +32,23 @@ If ssh key is not generated on Target Server Or Target Server is re-configured t
 If Server is re-configured or OS is -re-installed then follow following step and above steps
 
 01. From Ansible Server /home/<AD_Name>/.ssh/known_hosts remove the key for the Target Server reconfigured.
+
+###
+### Copy files with multiple extension
+###
+### If you want to copy files with multiple extenstion then play book will looks like follows
+
+# Make sure to copy id to target server using ssh-copy-id <AD_ID>@<Target_Server>
+---
+- hosts: [dbservers]
+  become: yes
+  remote_user: AD_ID
+  become_user: root
+  tasks:
+   - name: copy rpm files from control server to target server /tmp directory
+     copy:
+      src: "{{ item }}"
+      dest: /tmp/
+     with_fileglob:
+      - /home/AD_ID/software/mysql8ee/*.rpm
+      - /home/AD_ID/software/mysql8ee/*.bin
