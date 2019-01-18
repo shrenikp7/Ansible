@@ -15,7 +15,8 @@
 
 Note: 
 
-Make sure to have ssh-id copied to target, if not use following command to copy ssh-id at target/
+# Make sure to have ssh-id copied to target, if not use following command to copy ssh-id at target/
+# Execute following command from Ansible Tower / Ansieble machine.
 
 $ssh-copy-id <AD ID>@<target_IP_address>
 
