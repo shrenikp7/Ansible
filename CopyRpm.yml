@@ -50,6 +50,8 @@ If Server is re-configured or OS is -re-installed then follow following step and
      copy:
       src: "{{ item }}"
       dest: /tmp/
+      mode: 0755
      with_fileglob:
       - /home/AD_ID/software/mysql8ee/*.rpm
       - /home/AD_ID/software/mysql8ee/*.bin
+      - /home/AD_ID/sofware/mysql8ee/*.sh
