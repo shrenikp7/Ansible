@@ -55,3 +55,5 @@ If Server is re-configured or OS is -re-installed then follow following step and
       - /home/AD_ID/software/mysql8ee/*.rpm
       - /home/AD_ID/software/mysql8ee/*.bin
       - /home/AD_ID/sofware/mysql8ee/*.sh
+
+Ref.: https://docs.ansible.com/ansible/latest/modules/copy_module.html
