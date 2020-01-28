@@ -3,8 +3,8 @@
 #### Following will execute only reboot after setting selinux to permissive by editing file /etc/selinux/config
 #### Command : $ansible-playbook <FileName>.yml -i </PathToHostsFile>/hosts -K --tags "reboot"
 #### -K will allow you to enter the password to become root user
-####  You can use eith shell or command to execute reboot 
-####  
+####  You can use either shell or command to execute reboot 
+####  Firewalld serivice is stopped, disabled and mysqld service is stopped
 
 ---
 - hosts: [dbservers]
@@ -48,6 +48,20 @@
       yum:
         name: /tmp/mysql-shell-8.0.19-1.el7.x86_64.rpm
         state: present
+    - name: Stop mysql
+      service: name=mysqld
+        enabled=yes
+        state=stopped
+      tags:
+        - service
+    - name: disable firewalld
+      service: name=firewalld
+        enabled=no
+        state=stopped
+    - name: remove /var/lib/mysql directory
+      command: rm -rf /var/lib/mysql
+      tags:
+        - remove
     - name: Ensure SELinux is set to enforcing mode
       lineinfile:
         path: /etc/selinux/config
