@@ -1,3 +1,11 @@
+####
+#### Command : $ansible-playbook <FileName>.yml -i </PathToHostsFile>/hosts -K
+#### Following will execute only reboot after setting selinux to permissive by editing file /etc/selinux/config
+#### Command : $ansible-playbook <FileName>.yml -i </PathToHostsFile>/hosts -K --tags "reboot"
+#### -K will allow you to enter the password to become root user
+####  You can use eith shell or command to execute reboot 
+####  
+
 ---
 - hosts: [dbservers]
   become: yes
@@ -40,8 +48,13 @@
       yum:
         name: /tmp/mysql-shell-8.0.19-1.el7.x86_64.rpm
         state: present
-
-####
-#### Command : $ansible-playbook <FileName>.yml -i </PathToHostsFile>/hosts -K
-#### -K will allow you to enter the password to become root user
-####
+    - name: Ensure SELinux is set to enforcing mode
+      lineinfile:
+        path: /etc/selinux/config
+        regexp: '^SELINUX='
+        line: SELINUX=permissive
+    - name: reboot the machine
+      #shell: "sleep 5 && reboot"
+      command: /sbin/reboot
+      tags:
+        - reboot
