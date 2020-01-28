@@ -40,3 +40,8 @@
       yum:
         name: /tmp/mysql-shell-8.0.19-1.el7.x86_64.rpm
         state: present
+
+####
+#### Command : $ansible-playbook <FileName>.yml -i </PathToHostsFile>/hosts -K
+#### -K will allow you to enter the password to become root user
+####
