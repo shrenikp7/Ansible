@@ -1,0 +1,42 @@
+---
+- hosts: [dbservers]
+  become: yes
+  remote_user: 7312060
+  become_user: root
+  tasks:
+    - name: Uninstall Maria DB packages
+      yum:
+        name: mariadb-libs.x86_64
+        state: absent
+    - name: install MySQL Community common
+      yum:
+        name: /tmp/mysql-community-common-8.0.19-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community libs
+      yum:
+        name: /tmp/mysql-community-libs-8.0.19-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community libs compact
+      yum:
+        name: /tmp/mysql-community-libs-compat-8.0.19-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community CLIENT
+      yum:
+        name: /tmp/mysql-community-client-8.0.19-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community embeded compact
+      yum:
+        name: /tmp/mysql-community-embedded-compat-8.0.19-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community Devel
+      yum:
+        name: /tmp/mysql-community-devel-8.0.19-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community SERVER
+      yum:
+        name: /tmp/mysql-community-server-8.0.19-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL shell
+      yum:
+        name: /tmp/mysql-shell-8.0.19-1.el7.x86_64.rpm
+        state: present
