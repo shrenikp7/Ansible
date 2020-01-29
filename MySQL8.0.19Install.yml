@@ -6,12 +6,6 @@
 ####  You can use either shell or command to execute reboot 
 ####  Firewalld serivice is stopped, disabled and mysqld service is stopped
 
----
-- hosts: [dbservers]
-  become: yes
-  remote_user: 7312060
-  become_user: root
-  tasks:
     - name: Uninstall Maria DB packages
       yum:
         name: mariadb-libs.x86_64
@@ -48,6 +42,17 @@
       yum:
         name: /tmp/mysql-shell-8.0.19-1.el7.x86_64.rpm
         state: present
+    - name: Ensure SELinux is set to enforcing mode
+      lineinfile:
+        path: /etc/selinux/config
+        regexp: '^SELINUX='
+        line: SELINUX=permissive
+
+    - name: reboot the machine
+      #shell: "sleep 5 && reboot"
+      command: /sbin/reboot
+      tags:
+        - reboot
     - name: Stop mysql
       service: name=mysqld
         enabled=yes
@@ -58,17 +63,10 @@
       service: name=firewalld
         enabled=no
         state=stopped
-    - name: remove /var/lib/mysql directory
-      command: rm -rf /var/lib/mysql
+    - name: Delete directory example
+      file:
+        path: /var/lib/mysql
+        state: absent
       tags:
-        - remove
-    - name: Ensure SELinux is set to enforcing mode
-      lineinfile:
-        path: /etc/selinux/config
-        regexp: '^SELINUX='
-        line: SELINUX=permissive
-    - name: reboot the machine
-      #shell: "sleep 5 && reboot"
-      command: /sbin/reboot
-      tags:
-        - reboot
+        - removedir   
+
