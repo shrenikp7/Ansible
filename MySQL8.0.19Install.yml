@@ -47,7 +47,6 @@
         path: /etc/selinux/config
         regexp: '^SELINUX='
         line: SELINUX=permissive
-
     - name: reboot the machine
       #shell: "sleep 5 && reboot"
       command: /sbin/reboot
@@ -69,4 +68,3 @@
         state: absent
       tags:
         - removedir   
-
