@@ -1,0 +1,17 @@
+#
+# Following code can help to insert block of lines / multiple lines / config parameters into the my.cnf of MySQL configuration file.
+# blockinfile module is used to update the mysql configuraiton file, it backup the existing file as well at the destination before updating 
+# Explore more about blockinfile module at - https://docs.ansible.com/ansible/2.7/modules/blockinfile_module.html#blockinfile-module
+# 
+# Create custom parameter file at /home/mysql/custom.cfg on the ansible server. Use following code of block to update MySQL configuration file my.cnf
+---
+- hosts: [dbservers]
+  become: yes
+  remote_user: AD_ID
+  become_user: root
+  tasks:
+    - name: Insert/Update configuration using a local file
+      blockinfile:
+        block: "{{ lookup('file', '/home/mysql/custom.cfg') }}"
+        dest: /etc/my.cnf
+        backup: yes
