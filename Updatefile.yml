@@ -1,0 +1,10 @@
+  ####  
+  # The purpose of following code is to set SELINUX=permissive using lineinfile moudule of Ansible, which can help to manage lines in tet file. 
+  # Explore more at https://docs.ansible.com/ansible/latest/modules/lineinfile_module.html
+  ####
+  
+  - name: Ensure SELinux is set to enforcing mode
+      lineinfile:
+        path: /etc/selinux/config
+        regexp: '^SELINUX='
+        line: SELINUX=permissive
