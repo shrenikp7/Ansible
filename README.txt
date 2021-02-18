@@ -10,3 +10,8 @@ Before running .yml file on target server copy id, on target server using ssh-co
 #When sudo to root require password use option -K
 ####
 ansible-playbook <PlayBookFileName>.yml -i <PathToHostFileName>/hosts -K
+
+####
+## Execute command for the tag
+####
+ansible-playbook -i<PathToHostFileName>/hosts <PlyaBookFileName>.yml --tags "<tagName>"
