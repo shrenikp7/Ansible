@@ -1,0 +1,19 @@
+---
+- hosts: [dbservers]
+  become: yes
+  remote_user: 7312060
+  become_user: root
+  tasks:
+   - name: Create directory if they don't exist
+     file:
+       path: "{{ item }}"
+       state: directory
+       owner: mysql
+       group: mysql
+       mode: 0775
+     with_items:
+       - /mysql/lim/iblogs
+       - /mysql/lim/binlogs
+       - /mysql/lim/temp
+       #- /mysql/lim
+       #- /mysql/admin/scripts
