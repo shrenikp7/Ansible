@@ -1,0 +1,66 @@
+---
+- hosts: [dbservers]
+  become: yes
+  remote_user: ADID
+  become_user: root
+  tasks:
+    - name: Uninstall Maria DB packages
+      yum:
+        name: mariadb-libs.x86_64
+        state: absent
+    - name: install plugin
+      yum:
+        name: /tmp/mysql-community-client-plugins-8.0.25-1.el7.x86_64.rpm
+    - name: install MySQL Community common
+      yum:
+        name: /tmp/mysql-community-common-8.0.25-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community libs
+      yum:
+        name: /tmp/mysql-community-libs-8.0.25-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community libs compact
+      yum:
+        name: /tmp/mysql-community-libs-compat-8.0.25-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community CLIENT
+      yum:
+        name: /tmp/mysql-community-client-8.0.25-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community embeded compact
+      yum:
+        name: /tmp/mysql-community-embedded-compat-8.0.25-1.el7.x86_64.rpm
+        state: present
+    - name: install MySQL Community SERVER
+      yum:
+        name: /tmp/mysql-community-server-8.0.25-1.el7.x86_64.rpm
+        state: present
+    - name: Ensure SELinux is set to enforcing mode
+      lineinfile:
+        path: /etc/selinux/config
+        regexp: '^SELINUX='
+        line: SELINUX=permissive
+
+    - name: reboot the machine
+      #shell: "sleep 5 && reboot"
+      command: /sbin/reboot
+      tags:
+        - reboot
+    - name: Stop mysql
+      service: name=mysqld
+        enabled=yes
+        state=stopped
+      tags:
+        - service
+    - name: disable firewalld
+      service: name=firewalld
+        state=stopped
+        enabled=no
+      tags:
+        - firewall
+    - name: Delete directory example
+      file:
+        path: /var/lib/mysql
+        state: absent
+      tags:
+          - removedir
